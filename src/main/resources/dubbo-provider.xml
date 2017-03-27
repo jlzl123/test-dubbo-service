@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    
+    <bean id="testRegistryService" class="cn.lsh.dubbo.registry.service.impl.TestRegistryServiceImpl"/>
+
+    <dubbo:application name="service_provider"/>
+    <dubbo:registry address="zookeeper://192.168.25.58:2181"/>
+    <dubbo:protocol name="dubbo" port="20880"/>                                                           
+    
+    <dubbo:service interface="cn.lsh.dubbo.registry.service.TestRegistryService" ref="testRegistryService" />
+                                                                    <!--timeout   远程调用超时时间-->
+    <dubbo:service interface="cn.lsh.dubbo.registry.service.UserService" ref="userService" timeout="5000"/>
+</beans>    

@@ -1,0 +1,13 @@
+1、test-dubbo-api（接口定义）:普通的maven项目                                         定义提供者和消费者共用的接口
+2、test-dubbo-service（提供者）:基于maven创建的j2ee项目             实现api定义的接口，并提供服务给消费者
+3、test-dubbo-web（消费者）:基于maven创建的j2ee项目                        从zookeeper注册中心取得服务，即提供者实现的接口
+
+2和3均需用到1的接口，所以都要引用1的jar包。
+ 通过mavean的pom.xml，可以引用。如下：
+        <dependency>
+			<groupId>cn.lsh</groupId>
+			<artifactId>test-dubbo-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+也可以直接在Build Path中 add Class Floder即可添加1项目的java类
